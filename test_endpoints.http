@@ -1,0 +1,29 @@
+# Pruebas de la API de Purple Nails Studio
+# Se ejecutan con la extensión REST Client de VS Code (o el cliente HTTP de JetBrains).
+# Antes: uvicorn app.main:app --reload
+
+@host = http://localhost:8000
+
+### Estado de la API
+GET {{host}}/
+
+### Endpoint 1: servicios con promedio superior a la media global
+GET {{host}}/api/reportes/clasificacion-top
+
+### Endpoint 2: clientes por encima del promedio acumulado
+GET {{host}}/api/analitica/actores-estrella
+
+### Endpoint 3: empleadas por debajo del promedio de su especialidad
+GET {{host}}/api/items/desviacion-grupo
+
+### Endpoint 4: resumen por turno excluyendo clientes con cancelaciones
+GET {{host}}/api/segmentos/analisis-limpio
+
+### Endpoint 5: resumen dinámico (valor por defecto: min_operaciones = 2)
+GET {{host}}/api/operaciones/resumen-dinamico
+
+### Endpoint 5 con parámetro: grupos con al menos 5 citas
+GET {{host}}/api/operaciones/resumen-dinamico?min_operaciones=5
+
+### Endpoint 5 sin resultados: responde 404
+GET {{host}}/api/operaciones/resumen-dinamico?min_operaciones=50
